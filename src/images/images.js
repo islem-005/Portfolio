@@ -1,0 +1,1 @@
+export { default as PFP } from './PFP.jpg'
