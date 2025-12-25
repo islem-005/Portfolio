@@ -160,63 +160,78 @@ export default function PortfolioLanding() {
   id="home"
   className="snap-center min-h-screen pt-32 px-6 flex items-center justify-center relative overflow-hidden"
 >
-  {/* Background glow */}
-  <div className="absolute inset-0 -z-10">
-    <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-cyan-500/20 blur-[140px] rounded-full" />
-  </div>
-
+  {/* Animated background glow */}
   <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-    className="max-w-5xl text-center"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+    className="absolute inset-0 -z-10"
   >
-    {/* Status badge */}
-    <span className="inline-flex items-center gap-2 px-5 py-2 mb-10 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm backdrop-blur">
-      <Sparkles size={16} />
-      Open for Opportunities
-    </span>
-
-    {/* Profile */}
-    <img
-      src={PFP}
-      alt="Islem"
-      className="mx-auto w-40 h-40 rounded-full object-cover ring-2 ring-cyan-500/40 mb-10 shadow-lg shadow-cyan-500/20"
-    />
-
-    {/* Headline */}
-    <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6">
-      Hi, I’m{" "}
-      <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-        Islem
-      </span>
-      <br />
-      Full-Stack Developer
-    </h1>
-
-    {/* Description */}
-    <p className="text-slate-400 max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
-      I design and build high-quality web and mobile applications with a strong
-      focus on performance, clean architecture, and long-term scalability.
-    </p>
-
-    {/* Actions */}
-    <div className="flex flex-col sm:flex-row justify-center gap-4">
-      <a
-        href="#projects"
-        className="inline-flex items-center justify-center gap-2 px-9 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 font-medium text-slate-900 hover:shadow-2xl hover:shadow-cyan-500/30 transition"
-      >
-        View Work <ArrowRight size={18} />
-      </a>
-
-      <a
-        href="#contact"
-        className="inline-flex items-center justify-center px-9 py-3 rounded-xl border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition"
-      >
-        Contact Me
-      </a>
-    </div>
+    <div className="absolute top-1/4 left-1/3 w-[420px] h-[420px] bg-cyan-500/20 blur-[160px] rounded-full" />
+    <div className="absolute bottom-1/4 right-1/3 w-[380px] h-[380px] bg-blue-500/20 blur-[160px] rounded-full" />
   </motion.div>
+
+  <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+    {/* LEFT – TEXT */}
+    <motion.div
+      initial={{ opacity: 0, x: -40 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <span className="inline-flex items-center gap-2 px-5 py-2 mb-8 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm backdrop-blur">
+        <Sparkles size={16} />
+        Open for Opportunities
+      </span>
+
+      <h1 className="text-4xl sm:text-6xl font-extrabold leading-tight mb-6">
+        Building{" "}
+        <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          Digital Experiences
+        </span>
+        <br />
+        That Scale
+      </h1>
+
+      <p className="text-slate-400 max-w-xl mb-10 text-lg leading-relaxed">
+        I’m <span className="text-slate-200 font-medium">Islem</span>, a full-stack
+        developer focused on crafting performant, scalable web and mobile
+        applications with clean architecture and modern technologies.
+      </p>
+
+      <div className="flex flex-col sm:flex-row gap-4">
+        <a
+          href="#projects"
+          className="inline-flex items-center justify-center gap-2 px-9 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 font-medium text-slate-900 hover:shadow-2xl hover:shadow-cyan-500/30 transition"
+        >
+          View Projects <ArrowRight size={18} />
+        </a>
+
+        <a
+          href="#contact"
+          className="inline-flex items-center justify-center px-9 py-3 rounded-xl border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition"
+        >
+          Contact Me
+        </a>
+      </div>
+    </motion.div>
+
+    {/* RIGHT – IMAGE */}
+    <motion.div
+      initial={{ opacity: 0, x: 40 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      className="flex justify-center md:justify-end"
+    >
+      <div className="relative">
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 blur-xl opacity-40" />
+        <img
+          src={PFP}
+          alt="Islem"
+          className="relative w-52 h-52 sm:w-64 sm:h-64 rounded-full object-cover ring-2 ring-cyan-500/40"
+        />
+      </div>
+    </motion.div>
+  </div>
 </section>
 
 
