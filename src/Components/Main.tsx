@@ -18,8 +18,11 @@ import { PFP } from "../images/images";
 
 
 
+
 export default function PortfolioLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [sent, setSent] = useState(false);
+
 
   const projects = [
     {
@@ -91,10 +94,15 @@ export default function PortfolioLanding() {
         emailjs.send(serviceID, templateID, templateParams, publicKEY)
             .then((response) => {
                 console.log("Email send successfully!", response);
-                setName(name);
-                setEmail(email);
-                setMessage(message)
-            })
+                setName("");
+                setEmail("");
+                setMessage("")
+                setSent(!sent)
+
+                setTimeout(() => {
+                    setSent(sent)
+                }, 2000)
+              })
             .catch((error) => {
                 console.error('Error sending the eamil', error)
             })
@@ -102,16 +110,80 @@ export default function PortfolioLanding() {
             console.log(message);
     }
 
+    const handleReset = () => {
+
+    }
+
 
 
 
   return (
     <div className="scrollbar-hide h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+    
+    {sent && 
+        <AnimatePresence>
+    <motion.div
+      className="fixed top-6 left-5 z-[100]"
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: 100, opacity: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      <div className="bg-white rounded-xl shadow-2xl p-4 min-w-[320px] border border-green-100">
+        <div className="flex items-start gap-3">
+
+          {/* Icon */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
+            className="flex-shrink-0"
+          >
+            <div className="relative">
+              <svg
+                className="w-6 h-6 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+
+              {/* Ping effect */}
+              <motion.div
+                className="absolute inset-0 bg-green-500/20 rounded-full"
+                animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
+                transition={{ duration: 1, repeat: Infinity }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Text */}
+          <div className="flex-1">
+            <strong className="font-bold text-gray-900 block">
+              Success!
+            </strong>
+            <span className="text-gray-600 text-sm">
+              Your email has been sent successfully.
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </motion.div>
+  </AnimatePresence>
+    }
+
       {/* NAVIGATION */}
       <nav className="fixed top-0 z-50 w-full backdrop-blur-xl border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <span className="text-xl font-bold tracking-wide bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Islem
+          <a href="/">Islem</a>
           </span>
 
           <div className="hidden xl:flex items-center gap-10 text-sm">
@@ -143,7 +215,7 @@ export default function PortfolioLanding() {
                   <a
                     key={item}
                     href={`#${item}`}
-                    className="capitalize text-slate-300 hover:text-cyan-400"
+                    className="capitalize text-slate-300 hover:text-cyan-400 font-bold"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item}
@@ -156,87 +228,88 @@ export default function PortfolioLanding() {
       </nav>
 
       {/* HERO */}
-<section
-  id="home"
-  className="snap-center min-h-screen pt-32 px-6 flex items-center justify-center relative overflow-hidden"
->
-  {/* Animated background glow */}
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1 }}
-    className="absolute inset-0 -z-10"
-  >
-    <div className="absolute top-1/4 left-1/3 w-[420px] h-[420px] bg-cyan-500/20 blur-[160px] rounded-full" />
-    <div className="absolute bottom-1/4 right-1/3 w-[380px] h-[380px] bg-blue-500/20 blur-[160px] rounded-full" />
-  </motion.div>
-
-  <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
-    {/* LEFT – TEXT */}
-    <motion.div
-      initial={{ opacity: 0, x: -40 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      <span className="inline-flex items-center gap-2 px-5 py-2 mb-8 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm backdrop-blur">
-        <Sparkles size={16} />
-        Open for Opportunities
-      </span>
-
-      <h1 className="text-4xl sm:text-6xl font-extrabold leading-tight mb-6">
-        Building{" "}
-        <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-          Digital Experiences
-        </span>
-        <br />
-        That Scale
-      </h1>
-
-      <p className="text-slate-400 max-w-xl mb-10 text-lg leading-relaxed">
-        I’m <span className="text-slate-200 font-medium">Islem</span>, a full-stack
-        developer focused on crafting performant, scalable web and mobile
-        applications with clean architecture and modern technologies.
-      </p>
-
-      <div className="flex flex-col sm:flex-row gap-4">
-        <a
-          href="#projects"
-          className="inline-flex items-center justify-center gap-2 px-9 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 font-medium text-slate-900 hover:shadow-2xl hover:shadow-cyan-500/30 transition"
+        <section
+          id="home"
+          className="snap-start min-h-screen pt-32 px-6 flex items-center justify-center relative overflow-hidden"
         >
-          View Projects <ArrowRight size={18} />
-        </a>
+          {/* Animated background glow */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0 -z-10"
+          >
+            <div className="absolute top-1/4 left-1/3 w-[420px] h-[420px] bg-cyan-500/20 blur-[160px] rounded-full" />
+            <div className="absolute bottom-1/4 right-1/3 w-[380px] h-[380px] bg-blue-500/20 blur-[160px] rounded-full" />
+          </motion.div>
 
-        <a
-          href="#contact"
-          className="inline-flex items-center justify-center px-9 py-3 rounded-xl border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition"
-        >
-          Contact Me
-        </a>
-      </div>
-    </motion.div>
+          <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+            {/* LEFT – TEXT */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="inline-flex items-center gap-2 px-5 py-2 mb-8 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm backdrop-blur">
+                <Sparkles size={16} />
+                Open for Opportunities
+              </span>
 
-    {/* RIGHT – IMAGE */}
-    <motion.div
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-      className="flex justify-center md:justify-end"
-    >
-      <div className="relative">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 blur-xl opacity-40" />
-        <img
-          src={PFP}
-          alt="Islem"
-          className="relative w-52 h-52 sm:w-64 sm:h-64 rounded-full object-cover ring-2 ring-cyan-500/40"
-        />
-      </div>
-    </motion.div>
-  </div>
-</section>
+              <h1 className="text-4xl sm:text-6xl font-extrabold leading-tight mb-6">
+                Building{" "}
+                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                  Digital Experiences
+                </span>
+                <br />
+                That Scale
+              </h1>
+
+              <p className="text-slate-400 max-w-xl mb-10 text-lg leading-relaxed">
+                I’m <span className="text-slate-200 font-medium">Islem</span>, a full-stack
+                developer focused on crafting performant, scalable web and mobile
+                applications with clean architecture and modern technologies.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="#projects"
+                  className="inline-flex items-center justify-center gap-2 px-9 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 font-medium text-slate-900 hover:shadow-2xl hover:shadow-cyan-500/30 transition"
+                >
+                  View Projects <ArrowRight size={18} />
+                </a>
+
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center px-9 py-3 rounded-xl border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition"
+                >
+                  Contact Me
+                </a>
+              </div>
+            </motion.div>
+
+
+            {/* RIGHT – IMAGE */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex justify-center md:justify-end"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 blur-xl opacity-40" />
+                <img
+                  src={PFP}
+                  alt="Islem"
+                  className="relative w-52 h-52 sm:w-64 sm:h-64 rounded-full object-cover ring-2 ring-cyan-500/40"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
 
       {/* ABOUT */}
-      <section id="about" className="snap-center min-h-screen px-6 py-24 bg-slate-900/40">
+      <section id="about" className="snap-start min-h-screen px-6 py-24 bg-slate-900/40">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">Core Expertise</h2>
 
@@ -257,7 +330,7 @@ export default function PortfolioLanding() {
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" className="snap-center min-h-screen px-6 py-24">
+      <section id="projects" className="snap-start min-h-screen px-6 py-24">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">Selected Projects</h2>
 
@@ -289,7 +362,7 @@ export default function PortfolioLanding() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="snap-center min-h-screen px-6 py-24 bg-slate-900/40">
+      <section id="contact" className="snap-start min-h-screen px-6 py-24 bg-slate-900/40">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Let’s Build Something Great</h2>
           <p className="text-slate-400 mb-10">
@@ -297,7 +370,7 @@ export default function PortfolioLanding() {
           </p>
 
           <div className="flex justify-center gap-6">
-            <a href="https://github.com" className="p-4 rounded-full bg-slate-800 hover:bg-cyan-500 transition">
+            <a href="https://github.com/islem-005" className="p-4 rounded-full bg-slate-800 hover:bg-cyan-500 transition">
               <Github />
             </a>
             <a href="https://linkedin.com" className="p-4 rounded-full bg-slate-800 hover:bg-cyan-500 transition">
@@ -326,7 +399,7 @@ export default function PortfolioLanding() {
                 onChange={(e) => setName(e.target.value)}
                 required
                 className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-indigo-950"
-                placeholder="John Doe"
+                placeholder="Name"
             />
             </div>
 
@@ -341,7 +414,7 @@ export default function PortfolioLanding() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-indigo-950"
-                placeholder="john@example.com"
+                placeholder="email@example.com"
             />
             </div>
 
@@ -372,7 +445,7 @@ export default function PortfolioLanding() {
 
       </section>
 
-      <footer className="snap-center py-8 border-t border-slate-800 text-center text-slate-500">
+      <footer className="snap-start py-8 border-t border-slate-800 text-center text-slate-500">
         © {new Date().getFullYear()} Islem. All rights reserved.
       </footer>
     </div>
