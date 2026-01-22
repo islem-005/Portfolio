@@ -118,7 +118,7 @@ export default function PortfolioLanding() {
 
 
   return (
-    <div className="scrollbar-hide h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+    <div className="scrollbar-hide h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory bg-gradient-to-br from-slate-800 via-slate-600 to-slate-800 text-white">
     
     {sent && 
         <AnimatePresence>
@@ -186,10 +186,10 @@ export default function PortfolioLanding() {
           <a href="/">Islem</a>
           </span>
 
-          <div className="hidden xl:flex items-center gap-10 text-sm">
+          <div className="hidden xl:flex items-center gap-6 text-sm">
             {['home', 'about', 'projects', 'contact'].map((item) => (
               <a key={item} href={`#${item}`} className="group relative">
-                <span className="capitalize group-hover:text-cyan-400 transition-colors">
+                <span className="capitalize group-hover:text-cyan-400 transition-colors pr-5">
                   {item}
                 </span>
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all" />
@@ -208,7 +208,7 @@ export default function PortfolioLanding() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="xl:hidden bg-slate-950 border-t border-white/5"
+              className="xl:hidden bg-slate-900/40 border-t border-white/5"
             >
               <div className="flex flex-col items-center py-6 gap-4">
                 {['home', 'about', 'projects', 'contact'].map((item) => (
@@ -239,8 +239,7 @@ export default function PortfolioLanding() {
             transition={{ duration: 1 }}
             className="absolute inset-0 -z-10"
           >
-            <div className="absolute top-1/4 left-1/3 w-[420px] h-[420px] bg-cyan-500/20 blur-[160px] rounded-full" />
-            <div className="absolute bottom-1/4 right-1/3 w-[380px] h-[380px] bg-blue-500/20 blur-[160px] rounded-full" />
+
           </motion.div>
 
           <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
@@ -309,7 +308,7 @@ export default function PortfolioLanding() {
 
 
       {/* ABOUT */}
-      <section id="about" className="snap-start min-h-screen px-6 py-24 bg-slate-900/40">
+      <section id="about" className="snap-start min-h-screen px-6 py-24">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">Core Expertise</h2>
 
@@ -362,7 +361,7 @@ export default function PortfolioLanding() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="snap-start min-h-screen px-6 py-24 bg-slate-900/40">
+      <section id="contact" className="snap-start min-h-screen px-6 py-24 ">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Let’s Build Something Great</h2>
           <p className="text-slate-400 mb-10">
