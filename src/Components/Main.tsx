@@ -111,10 +111,6 @@ export default function PortfolioLanding() {
             console.log(message);
     }
 
-    const handleReset = () => {
-
-    }
-
 
 
 
@@ -429,7 +425,7 @@ export default function PortfolioLanding() {
                 </label>
                 <textarea
                     name="message"
-                    rows="4"
+                    rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
