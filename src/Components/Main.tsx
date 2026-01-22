@@ -12,7 +12,6 @@ import {
   Palette,
   Zap,
   Sparkles,
-  ExternalLink,
   ArrowDownToLine 
 } from "lucide-react";
 
