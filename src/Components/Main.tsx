@@ -13,7 +13,9 @@ import {
   Zap,
   Sparkles,
   ExternalLink,
+  ArrowDownToLine 
 } from "lucide-react";
+
 import { PFP } from "../images/images";
 
 
@@ -242,7 +244,7 @@ export default function PortfolioLanding() {
 
           </motion.div>
 
-          <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+          <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
             {/* LEFT – TEXT */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -282,6 +284,12 @@ export default function PortfolioLanding() {
                   className="inline-flex items-center justify-center px-9 py-3 rounded-xl border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition"
                 >
                   Contact Me
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center px-9 py-3 rounded-xl border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition"
+                >
+                  Download CV <ArrowDownToLine/>
                 </a>
               </div>
             </motion.div>
@@ -340,7 +348,6 @@ export default function PortfolioLanding() {
                 whileHover={{ scale: 1.03 }}
                 className="rounded-2xl overflow-hidden bg-slate-800/40 border border-slate-700 hover:border-cyan-500/40 transition"
               >
-                <div className="h-40 bg-gradient-to-br from-cyan-500/20 to-blue-500/20" />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                   <p className="text-slate-400 mb-3">{project.description}</p>
